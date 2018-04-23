@@ -1,3 +1,5 @@
+![dolls kill logo](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/DOLLSKILL-LOGO_2.jpeg/800px-DOLLSKILL-LOGO_2.jpeg)
+
 ### Description
 
 This application is a ReactJS + Bootstrap based request form that allows users to retrieve stock quantities for particular product id's from the Dolls Kill API. 
