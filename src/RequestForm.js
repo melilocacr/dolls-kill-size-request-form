@@ -108,7 +108,7 @@ class RequestForm extends React.Component {
 
     /** validates form input */
     validateFormInput(productIdInput) {
-        let desiredInput = /^([0-9]+\s*,)*\s*[0-9]+\s*$/;
+        let desiredInput = /^([0-9]+\s*,\s*)*\s*[0-9]+\s*$/;
 
         if (productIdInput.match(desiredInput)) {
             // form input is valid
