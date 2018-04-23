@@ -6,10 +6,10 @@ This application is a ReactJS + Bootstrap based request form that allows users t
 
 ### Developing Locally
 
-##Requirements:
--git
--Node v6
--npm v3
+## Requirements:
+* git
+* Node v6
+* npm v3
 
 1. Start by pulling down the git repo:
 ```
