@@ -22,4 +22,4 @@ To run the app run:
 npm start
 ```
 
-Then on your web browser navigate to [http://localhost:3000/] to see the results
+Then on your web browser navigate to [http://localhost:3000](http://localhost:3000/) to see the results
