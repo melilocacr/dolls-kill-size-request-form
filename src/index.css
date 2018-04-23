@@ -1,0 +1,172 @@
+@font-face {
+  font-family: bebasNeue;
+  src: url(fonts/BebasNeue-Regular.ttf);
+}
+
+@font-face {
+  font-family: proximaNova;
+  src: url(fonts/Montserrat-Regular.otf);
+}
+
+html,
+body,
+.container-fluid,
+.row {
+  font-family: proximaNova;
+  height: 100%;
+}
+
+nav {
+  background-color: black;
+  height: 18vh;
+}
+
+.logo {
+  width: 52vw;
+  margin-left: 24%;
+  margin-right: 50%;
+}
+
+.title {
+  font-family: bebasNeue;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.red {
+  color: red;
+}
+
+.small {
+  font-size: 9pt;
+}
+
+.medium {
+  font-size: 11pt;
+}
+
+.hidden {
+  visibility: hidden;
+}
+/* all */
+
+::-webkit-input-placeholder {
+  font-family: inherit;
+}
+
+::-moz-placeholder {
+  font-family: inherit;
+}
+
+/* firefox 19+ */
+
+:-ms-input-placeholder {
+  font-family: inherit;
+}
+
+/* ie */
+
+input:-moz-placeholder {
+  font-family: inherit;
+}
+
+.container-fluid {
+  margin-top: 5em;
+}
+
+.row {
+  height: 100%;
+}
+
+.form-control {
+  font-size: 8pt;
+}
+
+.btn-pink {
+  background-color: #ee008a;
+  color: white;
+  border-radius: 0;
+}
+
+.btn-pink:hover {
+  background-color: #920053;
+}
+
+.product-container {
+  margin: 4.2vw;
+  width: 90%;
+}
+
+.fa {
+  font-size: 9pt;
+}
+
+.fa:hover {
+  color: #cccccc;
+}
+
+.product-tables {
+  overflow: hidden;
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  border: solid;
+}
+
+.sidepanel {
+  background-color: #cccccc;
+  padding: 10.5vw;
+  border: none;
+  text-align: center;
+}
+
+.product-info-panel {
+  text-align: center;
+  margin-top: 2vh;
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 481px) { 
+  nav {
+    height: 21vh;
+  }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 1024px) { 
+  .product-container {
+    width: 92%;
+  }
+}
+
+@media (min-width: 768px) {
+  .sidepanel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding-top: 21vh;
+    z-index: 1000;
+    display: block;
+    padding-left: 3.5vw;
+    padding-right: 3.5vw;
+    text-align: left;
+  }
+
+  nav {
+    height: 17vh;
+  }
+
+  .logo {
+    width: 366px;
+    margin-left: 2vw;
+  }
+
+  .product-info-panel {
+    text-align: left;
+    margin-left: 32vw;
+  }
+}
