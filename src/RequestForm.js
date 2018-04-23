@@ -103,18 +103,16 @@ class RequestForm extends React.Component {
 
     /** handles form change */
     handleChange(event) {
-        this.setState({ productId: event.target.value });
+        let productIdInputF = event.target.value.split(' ').join('');
+        this.setState({ productId: productIdInputF });
     }
 
     /** validates form input */
     validateFormInput(productIdInput) {
-        let productIdInputF = productIdInput.split(' ').join('');
-        
         let desiredInput = /^([0-9]+,)*[0-9]+$/;
 
-        if (productIdInputF.match(desiredInput)) {
+        if (this.state.productId.match(desiredInput)) {
             // form input is valid
-            this.setState({ productId: productIdInputF});
             
             return 1;
         }
