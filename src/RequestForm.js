@@ -103,16 +103,16 @@ class RequestForm extends React.Component {
 
     /** handles form change */
     handleChange(event) {
-        let productIdInputF = event.target.value.split(' ').join('');
-        this.setState({ productId: productIdInputF });
+        this.setState({ productId: event.target.value });
     }
 
     /** validates form input */
     validateFormInput(productIdInput) {
-        let desiredInput = /^([0-9]+,)*[0-9]+$/;
+        let desiredInput = /^([0-9]+\s*,)*\s*[0-9]+\s*$/;
 
-        if (this.state.productId.match(desiredInput)) {
+        if (productIdInput.match(desiredInput)) {
             // form input is valid
+            this.setState({ productId: productIdInput});
             
             return 1;
         }
@@ -139,7 +139,9 @@ class RequestForm extends React.Component {
 
     /** fetches stock quantities from api */
     fetchProductData() {
-        var sizeRequestUrl = 'https://www.dollskill.com/codetest/api.php?ids=' + this.state.productId + '&op=get_size_attributes';
+        let prdIdFormatted = this.state.productId.split(' ').join('');
+
+        var sizeRequestUrl = 'https://www.dollskill.com/codetest/api.php?ids=' + prdIdFormatted + '&op=get_size_attributes';
 
         fetch(sizeRequestUrl)
             .then(res => res.json())
