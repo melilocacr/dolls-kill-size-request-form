@@ -6,20 +6,26 @@ This application is a ReactJS + Bootstrap based request form that allows users t
 
 ### Developing Locally
 
-You'll need to have npm installed in your system. Then start by pulling down the git repo:
+##Requirements:
+-git
+-Node v6
+-npm v3
+
+1. Start by pulling down the git repo:
 ```
 git clone https://github.com/melilocacr/dolls-kill-size-request-form.git
 ```
 
-Then go inside the project folder and run the following commands:
+2. Go inside the project folder and run the following command:
+
 ```
 npm install
 ````
 
-To run the app run: 
+3. Start the app by running:
 
 ```
 npm start
 ```
 
-Then on your web browser navigate to [http://localhost:3000](http://localhost:3000/) to see the results
+4. On your web browser navigate to [http://localhost:3000](http://localhost:3000/) to see the results
