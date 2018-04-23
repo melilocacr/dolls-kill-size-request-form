@@ -1,17 +1,19 @@
 ![dolls kill logo](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/DOLLSKILL-LOGO_2.jpeg/800px-DOLLSKILL-LOGO_2.jpeg)
 
-### Description
+## Description
 
 This application is a ReactJS + Bootstrap based request form that allows users to retrieve stock quantities for particular product id's from the Dolls Kill API. 
 
-### Developing Locally
+## Developing Locally
 
-## Requirements:
+#### Requirements:
 * git
 * Node v6
 * npm v3
 
-1. Start by pulling down the git repo:
+#### Instructions:
+
+1. Start by cloning the git repo:
 ```
 git clone https://github.com/melilocacr/dolls-kill-size-request-form.git
 ```
