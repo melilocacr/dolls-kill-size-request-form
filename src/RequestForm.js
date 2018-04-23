@@ -1,5 +1,6 @@
 import React from 'react';
 
+/** test data */
 var stock = {
     "141975": [
         {
@@ -83,6 +84,7 @@ var stock = {
     }
 }
 
+/** Request Form */
 class RequestForm extends React.Component {
     constructor() {
         super();
@@ -99,15 +101,21 @@ class RequestForm extends React.Component {
         this.validateFormInput = this.validateFormInput.bind(this);
     }
 
+    /** handles form change */
     handleChange(event) {
         this.setState({ productId: event.target.value });
     }
 
+    /** validates form input */
     validateFormInput(productIdInput) {
+        let productIdInputF = productIdInput.split(' ').join('');
+        
         let desiredInput = /^([0-9]+,)*[0-9]+$/;
 
-        if (productIdInput.match(desiredInput)) {
+        if (productIdInputF.match(desiredInput)) {
             // form input is valid
+            this.setState({ productId: productIdInputF});
+            
             return 1;
         }
         else {
@@ -116,18 +124,22 @@ class RequestForm extends React.Component {
         }
     }
 
+    /** handles form submit */
     handleSubmit(event) {
         if (this.validateFormInput(this.state.productId)) {
-            this.setState({inputValid: true})
+            // form input is valid
+            this.setState({ inputValid: true })
             this.fetchProductData();
             event.preventDefault();
         }
         else {
-            this.setState({inputValid: false})
+            // form input is invalid
+            this.setState({ inputValid: false })
         }
 
     }
 
+    /** fetches stock quantities from api */
     fetchProductData() {
         var sizeRequestUrl = 'https://www.dollskill.com/codetest/api.php?ids=' + this.state.productId + '&op=get_size_attributes';
 
@@ -136,7 +148,6 @@ class RequestForm extends React.Component {
             .then(
                 (result) => {
                     this.setState({ fetchedProducts: result });
-                    console.log(this.state.fetchedProducts);
                 }
             )
     }
@@ -152,8 +163,8 @@ class RequestForm extends React.Component {
                         <form onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="product-id">Product id(s):</label>
-                                <input type="text" className = {this.state.inputValid ? "form-control" : "form-control is-invalid"}
-                                    placeholder=""
+                                <input type="text" className={this.state.inputValid ? "form-control" : "form-control is-invalid"}
+                                    placeholder="product id(s)"
                                     value={this.state.productId}
                                     onChange={this.handleChange} />
                                 <span className={this.state.inputValid ? "hidden" : "red small"}>Format for product id(s) entered not valid</span>
@@ -170,10 +181,11 @@ class RequestForm extends React.Component {
     }
 }
 
+/** Product(s) information */
 class ProductList extends React.Component {
-    //stock = this.props.products;
-
     render() {
+        stock = this.props.products; // commment this line out to use test data instead
+
         return (
             Object.keys(stock).map(productId => {
                 return (
@@ -184,9 +196,11 @@ class ProductList extends React.Component {
     }
 }
 
+/** Specific product detail */
 class Product extends React.Component {
+
+    /** renders a table row for an out of stock size */
     renderRow(row) {
-        console.log('renderRow');
         return (
             <tr key={row.size_id}>
                 <td>{row.size_text}</td>
@@ -194,38 +208,29 @@ class Product extends React.Component {
         );
     }
 
-    renderSortableRow(row) {
-        var objRow = {
-            "quantity": row.quantity,
-            "size_text": row.size_text,
-            "simple_id": row.simple_id
-        }
-
-        return objRow;
-    }
-
+    /** generates stock detail for a product */
     renderProductDetails(product) {
         const inStockProdStr = [];
         const outStockProdStr = [];
 
-        if (product.length) { // product is an array
+        if (product.length) { // product fetched is an array
             product.forEach(p => {
                 if (p.quantity === 0) {
                     outStockProdStr.push(this.renderRow(p))
                 }
                 else {
-                    inStockProdStr.push(this.renderSortableRow(p))
+                    inStockProdStr.push(p)
                 }
             });
         }
-        else { // product is an object
+        else { // product fetched is an object
             if (typeof product === 'object') {
                 Object.keys(product).forEach(id => {
                     if (product[id].quantity === 0) {
                         outStockProdStr.push(this.renderRow(product[id]))
                     }
                     else {
-                        inStockProdStr.push(this.renderSortableRow(product[id]))
+                        inStockProdStr.push(product[id])
                     }
                 }
                 );
@@ -234,6 +239,7 @@ class Product extends React.Component {
 
         let outStockContent;
 
+        // handle the view based on out of stock quantities
         if (outStockProdStr.length > 0) {
             outStockContent = (
                 <div className={'col-md-5 right-table'}>
@@ -255,6 +261,7 @@ class Product extends React.Component {
             outStockContent = (<div className={'col-md-5 right-table'}></div>);
         }
 
+        // handle the view based on in stock quantities
         let inStockContent;
 
         if (inStockProdStr.length > 0) {
@@ -297,7 +304,7 @@ class Product extends React.Component {
         );
     }
 }
-
+/** Table for sizes in stock */
 class InStockTable extends React.Component {
     constructor(props) {
         super(props);
@@ -312,6 +319,7 @@ class InStockTable extends React.Component {
     }
 
     componentDidMount() {
+        // sort data
         this.state.data.sort(this.compareBy('quantity'));
     }
 
@@ -322,6 +330,7 @@ class InStockTable extends React.Component {
         return null;
     }
 
+    // compare row items for sorting
     compareBy(key) {
         if (this.state.sortOrder === '' || this.state.sortOrder === 'asc') {
             this.setState({ sortOrder: 'des' });
@@ -341,6 +350,7 @@ class InStockTable extends React.Component {
         }
     }
 
+    // sort row items
     sortBy(key) {
         let arrayCopy = [...this.state.data];
         arrayCopy.sort(this.compareBy(key));
