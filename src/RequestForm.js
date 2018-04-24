@@ -103,17 +103,17 @@ class RequestForm extends React.Component {
 
     /** handles form change */
     handleChange(event) {
+        console.log('handling form change');
         this.setState({ productId: event.target.value });
     }
 
     /** validates form input */
     validateFormInput(productIdInput) {
+        console.log('form input being validated');
         let desiredInput = /^([0-9]+\s*,\s*)*\s*[0-9]+\s*$/;
 
         if (productIdInput.match(desiredInput)) {
             // form input is valid
-            this.setState({ productId: productIdInput});
-            
             return 1;
         }
         else {
@@ -124,11 +124,14 @@ class RequestForm extends React.Component {
 
     /** handles form submit */
     handleSubmit(event) {
+        event.preventDefault();
+        console.log('handling submit');
         if (this.validateFormInput(this.state.productId)) {
             // form input is valid
             this.setState({ inputValid: true })
+            this.setState({ productId: event.target.value });
             this.fetchProductData();
-            event.preventDefault();
+            
         }
         else {
             // form input is invalid
